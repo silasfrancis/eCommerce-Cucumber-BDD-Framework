@@ -2,10 +2,14 @@ package stepDefinitions;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import pageObjects.AddToCart;
@@ -45,6 +49,12 @@ public class BaseClass {
     public void tearDown()
     {
         driver.quit();
+    }
+
+    public WebElement expicitWait (By locator)
+    {
+        WebDriverWait mywait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return mywait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
 
